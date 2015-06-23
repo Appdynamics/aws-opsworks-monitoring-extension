@@ -1,0 +1,26 @@
+<monitor>
+    <name>AWS OpsWorks Monitor</name>
+    <type>managed</type>
+    <description>AWS OpsWorks Monitoring Extension</description>
+    <monitor-configuration></monitor-configuration>
+    <monitor-run-task>
+        <execution-style>periodic</execution-style>
+        <execution-frequency-in-seconds>60</execution-frequency-in-seconds>
+        <name>AWS OpsWorks Monitor Run task</name>
+        <display-name>AWS OpsWorks Monitor Run task</display-name>
+        <description>AWS OpsWorks Monitor Run task</description>
+        <type>java</type>
+        <execution-timeout-in-secs>60</execution-timeout-in-secs>
+        
+		<task-arguments>
+			<argument name="config-file" is-required="true" default-value="monitors/AWSOpsWorksMonitor/conf/config.yaml" />
+			<argument name="region-endpoints-config" is-required="true" default-value="monitors/AWSOpsWorksMonitor/conf/region-endpoints.yaml" />
+		</task-arguments>
+            
+        <java-task>
+            <classpath>aws-opsworks-monitoring-extension.jar</classpath>
+            <impl-class>com.appdynamics.extensions.aws.opsworks.OpsWorksMonitor</impl-class>
+        </java-task>
+        
+    </monitor-run-task>
+</monitor>
